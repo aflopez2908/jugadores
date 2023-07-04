@@ -70,7 +70,6 @@ def mostrar_estadisticas():
 
 
 def abrir_nueva_ventana():
-
     nueva_ventana = tk.Toplevel(window)
     nueva_ventana.title("Nueva Ventana")
 
