@@ -65,25 +65,41 @@ def mostrar_estadisticas():
 
     # Mostrar los jugadores y sus estadísticas en la tabla
     for jugador in jugadores:
-        row = (jugador.name,jugador.last_name, jugador.number)
+        row = (jugador.name,jugador.last_name, jugador.number,jugador.personal_foul)
         treeview.insert("", tk.END, values=row)
 
 
-def abrir_nueva_ventana():
+
+
+def abrir_nueva_ventana_fallado():
     nueva_ventana = tk.Toplevel(window)
     nueva_ventana.title("Nueva Ventana")
 
     # Agregar contenido a la nueva ventana
-    label = tk.Label(nueva_ventana, text="¡Esta es una nueva ventana!")
+    label = tk.Label(nueva_ventana, text="cual es el numero del jugador")
     label.pack()
 
-def tiro_libre_anotado():
+    entry_numero = tk.Entry(nueva_ventana)
+    entry_numero.pack()
 
-    numero=int(input("numero"))
+    def tiro_libre_anotado():
+        numero = entry_numero.get
+        for i in jugadores:
+            if numero == i.number:
+                nueva_ventana = tk.Toplevel(window)
+                nueva_ventana.title("Nueva Ventana")
 
-    for i in jugadores:
-        if numero==i.number:
-            print(i)
+                # Agregar contenido a la nueva ventana
+                label = tk.Label(nueva_ventana, text="cual es el numero del jugador")
+                label.pack()
+
+
+    button_agregar_fallado = tk.Button(nueva_ventana, text="Agregar Jugador", command=tiro_libre_anotado)
+    button_agregar_fallado.pack()
+
+
+
+
 
 
 
@@ -138,7 +154,7 @@ entry_number.pack()
 button_agregar = tk.Button(window, text="Agregar Jugador", command=agregar_jugador)
 button_agregar.pack()
 
-button_tiro_libre_anotado = tk.Button(window, text="Tiro libre anotado", command=abrir_nueva_ventana)
+button_tiro_libre_anotado = tk.Button(window, text="Tiro libre anotado", command=abrir_nueva_ventana_fallado)
 button_tiro_libre_anotado.pack()
 
 
